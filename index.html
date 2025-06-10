@@ -947,7 +947,7 @@
 async function checkAvailability(checkin, checkout) {
   try {
     // Replace all google.script.run calls with fetch()
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYGvJmatUPb17l5oHNz_qO-C0imzsrgggvgZ2kq1VttiSJRH_pKtpUnloZjwtSJJgxRA/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTdlvYcWfX5f9FIMVWy3uTfCbPo8NzO-1SNNaYKuaa4XuiBahXG9Saf0ZOFsEH7u-C_A/exec";
     const roomType = "Deluxe";
     const response = await fetch(`${SCRIPT_URL}?endpoint=checkAvailability`, {
       method: "POST",
