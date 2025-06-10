@@ -950,8 +950,9 @@ async function checkAvailability(checkin, checkout) {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTdlvYcWfX5f9FIMVWy3uTfCbPo8NzO-1SNNaYKuaa4XuiBahXG9Saf0ZOFsEH7u-C_A/exec";
     const roomType = "Deluxe";
     const response = await fetch(`${SCRIPT_URL}?endpoint=checkAvailability`, {
+      redirect: "follow",
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({ roomType, checkin, checkout })
     });
     const result = await response.json();
