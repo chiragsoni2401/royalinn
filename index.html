@@ -949,24 +949,24 @@ async function checkAvailability(checkin, checkout) {
     // Replace all google.script.run calls with fetch()
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTdlvYcWfX5f9FIMVWy3uTfCbPo8NzO-1SNNaYKuaa4XuiBahXG9Saf0ZOFsEH7u-C_A/exec";
     const roomType = "Deluxe";
-    // const response = await fetch(`${SCRIPT_URL}?endpoint=checkAvailability`, {
-    //   redirect: "follow",
-    //   method: "POST",
-    //   headers: { "Content-Type": "text/plain;charset=utf-8" },
-    //   body: JSON.stringify({ roomType, checkin, checkout })
-    // });
+    const response = await fetch(`${SCRIPT_URL}?endpoint=checkAvailability`, {
+      method: "POST",
+      mode: 'no-cors',  
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify({ roomType, checkin, checkout })
+    });
       // Convert data to URL-encoded format
-  const formData = new URLSearchParams();
-  formData.append('endpoint', 'checkAvailability');
-  formData.append('data', JSON.stringify({ roomType, checkin, checkout }));
+  // const formData = new URLSearchParams();
+  // formData.append('endpoint', 'checkAvailability');
+  // formData.append('data', JSON.stringify({ roomType, checkin, checkout }));
   
-  const response = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: formData
-  });
+  // const response = await fetch(SCRIPT_URL, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //   },
+  //   body: formData
+  // });
     const result = await response.json();
     showAvailability(result.isAvailable);
   } catch (error) {
@@ -990,17 +990,12 @@ async function submitBooking(formData) {
     paymentStatus: "Done",
     address: "Sirohi, Rajasthan"
   };
-         const formData = new URLSearchParams();
-  formData.append('endpoint', 'submitBooking');
-  formData.append('data', JSON.stringify(bookingData));
-  
-  const response = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: formData
-  });
+         const response = await fetch(`${SCRIPT_URL}?endpoint=submitBooking`, {
+      method: "POST",
+      mode: 'no-cors',  
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify(bookingData)
+    });
         
         const data = await response.json();
         return data;
