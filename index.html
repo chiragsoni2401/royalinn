@@ -955,6 +955,18 @@ async function checkAvailability(checkin, checkout) {
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({ roomType, checkin, checkout })
     });
+      // Convert data to URL-encoded format
+  const formData = new URLSearchParams();
+  formData.append('endpoint', 'checkAvailability');
+  formData.append('data', JSON.stringify({ roomType, checkin, checkout }));
+  
+  const response = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: formData
+  });
     const result = await response.json();
     showAvailability(result.isAvailable);
   } catch (error) {
