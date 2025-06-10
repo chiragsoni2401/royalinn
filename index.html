@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Inn Hotel - Luxury Accommodations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B5A2B;
+            --primary-light: #A67C52;
+            --secondary: #1A1A1A;
+            --accent: #D4AF37;
+            --light: #F8F5F2;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .book-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .book-btn:hover {
+            background-color: var(--primary-light);
+            color: var(--white);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-btn {
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .hero-btn:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        /* Booking Form */
+        .booking-form-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-submit {
+            grid-column: 1 / -1;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .form-submit:hover {
+            background-color: var(--primary-light);
+        }
+        
+        /* Rooms Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .room-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .room-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .room-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .room-card:hover .room-img img {
+            transform: scale(1.1);
+        }
+        
+        .room-details {
+            padding: 20px;
+        }
+        
+        .room-details h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .room-features span {
+            margin-right: 15px;
+            font-size: 14px;
+            color: var(--primary-light);
+        }
+        
+        .room-features i {
+            margin-right: 5px;
+        }
+        
+        .room-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .price span {
+            font-size: 14px;
+            font-weight: normal;
+            color: var(--secondary);
+        }
+        
+        .view-btn {
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .view-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* Amenities Section */
+        .amenities {
+            background-color: var(--white);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .amenity-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 8px;
+            background-color: var(--light);
+            transition: transform 0.3s;
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .amenity-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .amenity-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .testimonial-rating {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .modal-header h3 {
+            font-size: 24px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .room-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .room-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .room-gallery img:hover {
+            transform: scale(1.02);
+        }
+        
+        .room-info {
+            margin-bottom: 30px;
+        }
+        
+        .room-info h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .booking-modal-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .room-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding-top: 70px;
+            }
+            
+            .booking-form-container {
+                margin-top: -150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Royal <span>Inn</span></a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#rooms">Rooms</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="book-btn">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Experience Royal Comfort</h1>
+                <p>Discover luxurious accommodations and world-class service at Royal Inn Hotel, where every stay is a memorable experience.</p>
+                <a href="#rooms" class="hero-btn">Explore Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <div class="container">
+        <div class="booking-form-container">
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label for="checkin">Check-in</label>
+                    <input type="date" id="checkin" name="checkin" required>
+                </div>
+                <div class="form-group">
+                    <label for="checkout">Check-out</label>
+                    <input type="date" id="checkout" name="checkout" required>
+                </div>
+                <div class="form-group">
+                    <label for="adults">Adults</label>
+                    <select id="adults" name="adults" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="children">Children</label>
+                    <select id="children" name="children">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit">Check Availability</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rooms Section -->
+    <section class="section" id="rooms">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Rooms & Suites</h2>
+                <p>Each of our rooms is designed to provide the ultimate in comfort and luxury, with attention to every detail.</p>
+            </div>
+            <div class="rooms-grid" id="roomsGrid">
+                <!-- Rooms will be loaded dynamically from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="section amenities" id="amenities">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hotel Amenities</h2>
+                <p>We offer a range of amenities to make your stay as comfortable and enjoyable as possible.</p>
+            </div>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Fine Dining</h3>
+                    <p>Experience gourmet cuisine at our award-winning restaurant with locally sourced ingredients.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3>Infinity Pool</h3>
+                    <p>Relax by our stunning infinity pool with panoramic views of the surrounding landscape.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Spa & Wellness</h3>
+                    <p>Rejuvenate your body and mind with our range of spa treatments and wellness programs.</p>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>High-Speed WiFi</h3>
+                    <p>Stay connected with our complimentary high-speed WiFi available throughout the hotel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Guest Reviews</h2>
+                <p>Hear what our guests have to say about their experiences at Royal Inn Hotel.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Royal Inn exceeded all our expectations. The room was spacious and beautifully appointed, the staff was attentive without being intrusive, and the location was perfect. We can't wait to return!"</p>
+                    <p class="testimonial-author">- Sarah Johnson</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"From the moment we arrived, we felt like royalty. The attention to detail in every aspect of our stay was remarkable. The spa treatments were the best I've ever experienced."</p>
+                    <p class="testimonial-author">- Michael Chen</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"The perfect blend of luxury and comfort. The bed was so comfortable we slept like babies, and the breakfast buffet had an incredible selection. Will definitely be back!"</p>
+                    <p class="testimonial-author">- Emily Rodriguez</p>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Have questions or special requests? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, City Center, 10001</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> reservations@royalinn.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Royal Inn Hotel</h3>
+                    <p>Experience unparalleled luxury and service at our award-winning hotel in the heart of the city.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rooms">Rooms</a></li>
+                        <li><a href="#amenities">Amenities</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Room Service</a></li>
+                        <li><a href="#">Spa & Wellness</a></li>
+                        <li><a href="#">Restaurant</a></li>
+                        <li><a href="#">Meeting Rooms</a></li>
+                        <li><a href="#">Concierge</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for special offers and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Royal Inn Hotel. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Room Modal -->
+    <div class="modal" id="roomModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalRoomTitle">Deluxe Room</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="room-gallery">
+                    <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Room image 1">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Room image 2">
+                    <img src="https://images.unsplash.com/photo-1566669437685-5d0e8f627b75?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Room image 3">
+                    <img src="https://images.unsplash.com/photo-1583778176476-4a8b02a64c01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Room image 4">
+                </div>
+                <div class="room-info">
+                    <h4>Description</h4>
+                    <p id="modalRoomDescription">Our Deluxe Rooms offer a perfect blend of comfort and style. Featuring a king-size bed, luxurious linens, and a spacious bathroom with premium amenities, these rooms are designed for relaxation.</p>
+                    
+                    <h4>Amenities</h4>
+                    <ul id="modalRoomAmenities">
+                        <li><i class="fas fa-wifi"></i> Free High-Speed WiFi</li>
+                        <li><i class="fas fa-tv"></i> 55" Smart TV</li>
+                        <li><i class="fas fa-coffee"></i> Coffee Maker</li>
+                        <li><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                        <li><i class="fas fa-shower"></i> Rainfall Shower</li>
+                    </ul>
+                </div>
+                <form class="booking-modal-form" id="modalBookingForm">
+                    <input type="hidden" id="modalRoomId" name="roomId">
+                    <div class="form-group">
+                        <label for="modalCheckin">Check-in Date</label>
+                        <input type="date" id="modalCheckin" name="checkin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalCheckout">Check-out Date</label>
+                        <input type="date" id="modalCheckout" name="checkout" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalAdults">Adults</label>
+                        <select id="modalAdults" name="adults" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalChildren">Children</label>
+                        <select id="modalChildren" name="children">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalSpecialRequests">Special Requests</label>
+                        <textarea id="modalSpecialRequests" name="specialRequests" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="room-price">
+                    <span class="price" id="modalRoomPrice">$299 <span>/ night</span></span>
+                    <button type="submit" form="modalBookingForm" class="view-btn">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Booking Confirmation</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <div style="font-size: 60px; color: var(--accent); margin-bottom: 20px;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h4 style="margin-bottom: 15px;">Thank You for Your Booking!</h4>
+                <p id="successMessage">Your reservation has been successfully submitted. A confirmation email has been sent to your email address.</p>
+                <button class="view-btn" style="margin-top: 20px; width: 100%;" id="closeSuccessModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example function to fetch room availability
+async function checkAvailability(checkin, checkout) {
+  try {
+    // Replace all google.script.run calls with fetch()
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYGvJmatUPb17l5oHNz_qO-C0imzsrgggvgZ2kq1VttiSJRH_pKtpUnloZjwtSJJgxRA/exec";
+    const roomType = "Deluxe";
+    const origin = encodeURIComponent(window.location.origin);
+    const scriptURL = `https://script.google.com/macros/s/AKfycbyYGvJmatUPb17l5oHNz_qO-C0imzsrgggvgZ2kq1VttiSJRH_pKtpUnloZjwtSJJgxRA/exec?endpoint=checkAvailability&origin=${origin}`;
+    const response = await fetch(`${scriptURL}?endpoint=checkAvailability`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ roomType, checkin, checkout })
+    });
+    const result = await response.json();
+    showAvailability(result.isAvailable);
+  } catch (error) {
+    showError(error);
+  }
+}
+
+// Example function to handle form submission to Google Apps Script
+async function submitBooking(formData) {
+    try {
+        // Replace with your Google Apps Script web app URL
+        const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error submitting booking:', error);
+        throw error;
+    }
+}
+    
+        // Sample room data - in a real app, this would come from your backend
+        const rooms = [
+            {
+                id: 1,
+                title: "Deluxe Room",
+                description: "Our Deluxe Rooms offer a perfect blend of comfort and style. Featuring a king-size bed, luxurious linens, and a spacious bathroom with premium amenities.",
+                price: 299,
+                size: "350 sq ft",
+                capacity: "2 Adults",
+                amenities: ["Free WiFi", "55\" Smart TV", "Coffee Maker", "Air Conditioning", "Rainfall Shower"],
+                image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                id: 2,
+                title: "Executive Suite",
+                description: "The Executive Suite provides extra space with a separate living area, perfect for business travelers or those seeking additional comfort.",
+                price: 499,
+                size: "600 sq ft",
+                capacity: "2 Adults, 1 Child",
+                amenities: ["Free WiFi", "65\" Smart TV", "Mini Bar", "Air Conditioning", "Jacuzzi", "Work Desk"],
+                image: "https://images.unsplash.com/photo-1566669437685-5d0e8f627b75?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            },
+            {
+                id: 3,
+                title: "Presidential Suite",
+                description: "Our most luxurious accommodation, the Presidential Suite features a spacious bedroom, living room, dining area, and stunning city views.",
+                price: 899,
+                size: "1200 sq ft",
+                capacity: "4 Adults, 2 Children",
+                amenities: ["Free WiFi", "75\" Smart TV", "Full Kitchen", "Air Conditioning", "Spa Bath", "Butler Service"],
+                image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            }
+        ];
+
+        // DOM Elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const bookingForm = document.getElementById('bookingForm');
+        const roomsGrid = document.getElementById('roomsGrid');
+        const roomModal = document.getElementById('roomModal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const modalRoomTitle = document.getElementById('modalRoomTitle');
+        const modalRoomDescription = document.getElementById('modalRoomDescription');
+        const modalRoomAmenities = document.getElementById('modalRoomAmenities');
+        const modalRoomPrice = document.getElementById('modalRoomPrice');
+        const modalRoomId = document.getElementById('modalRoomId');
+        const modalBookingForm = document.getElementById('modalBookingForm');
+        const successModal = document.getElementById('successModal');
+        const closeSuccessModal = document.getElementById('closeSuccessModal');
+        const successMessage = document.getElementById('successMessage');
+        const testimonialSlides = document.querySelectorAll('.testimonial');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Load rooms
+        function loadRooms() {
+            roomsGrid.innerHTML = '';
+            rooms.forEach(room => {
+                const roomCard = document.createElement('div');
+                roomCard.className = 'room-card';
+                roomCard.innerHTML = `
+                    <div class="room-img">
+                        <img src="${room.image}" alt="${room.title}">
+                    </div>
+                    <div class="room-details">
+                        <h3>${room.title}</h3>
+                        <div class="room-features">
+                            <span><i class="fas fa-expand"></i> ${room.size}</span>
+                            <span><i class="fas fa-user-friends"></i> ${room.capacity}</span>
+                        </div>
+                        <div class="room-price">
+                            <span class="price">$${room.price} <span>/ night</span></span>
+                            <a href="#" class="view-btn" data-room="${room.id}">View Details</a>
+                        </div>
+                    </div>
+                `;
+                roomsGrid.appendChild(roomCard);
+            });
+
+            // Add event listeners to view buttons
+            document.querySelectorAll('.view-btn[data-room]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const roomId = parseInt(btn.getAttribute('data-room'));
+                    openRoomModal(roomId);
+                });
+            });
+        }
+
+        // Open room modal
+        function openRoomModal(roomId) {
+            const room = rooms.find(r => r.id === roomId);
+            if (!room) return;
+
+            modalRoomTitle.textContent = room.title;
+            modalRoomDescription.textContent = room.description;
+            modalRoomPrice.innerHTML = `$${room.price} <span>/ night</span>`;
+            modalRoomId.value = room.id;
+
+            // Set amenities
+            modalRoomAmenities.innerHTML = '';
+            room.amenities.forEach(amenity => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check"></i> ${amenity}`;
+                modalRoomAmenities.appendChild(li);
+            });
+
+            // Set default dates from main booking form if available
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const adults = document.getElementById('adults').value;
+            const children = document.getElementById('children').value;
+
+            if (checkin) document.getElementById('modalCheckin').value = checkin;
+            if (checkout) document.getElementById('modalCheckout').value = checkout;
+            if (adults) document.getElementById('modalAdults').value = adults;
+            if (children) document.getElementById('modalChildren').value = children;
+
+            roomModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            roomModal.style.display = 'none';
+            successModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === roomModal) {
+                closeModal();
+            }
+            if (e.target === successModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal buttons
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+
+        closeSuccessModal.addEventListener('click', closeModal);
+
+        // Booking form submission
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log(e);
+            // Access form field values
+    const checkin = document.getElementById('checkin').value;
+    const checkout = document.getElementById('checkout').value;
+    const adults = document.getElementById('adults').value;
+    const children = document.getElementById('children').value;
+    checkAvailability(checkin,checkout);
+
+            // In a real app, this would check availability with your backend
+            // For now, we'll just open the first room modal
+            openRoomModal(1);
+        });
+
+        // Modal booking form submission
+        modalBookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(modalBookingForm);
+            const bookingData = {
+                roomId: formData.get('roomId'),
+                checkin: formData.get('checkin'),
+                checkout: formData.get('checkout'),
+                adults: formData.get('adults'),
+                children: formData.get('children'),
+                specialRequests: formData.get('specialRequests')
+            };
+            
+            // In a real app, you would send this to your Google Apps Script backend
+            // For now, we'll simulate a successful booking
+            console.log("hello");
+            console.log(bookingData);
+            simulateBooking(bookingData);
+        });
+
+        // Simulate booking submission
+        function simulateBooking(bookingData) {
+            // This is where you would normally call your Google Apps Script
+            // For example:
+            // const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL';
+            // fetch(scriptURL, { method: 'POST', body: JSON.stringify(bookingData) })
+            //   .then(response => response.json())
+            //   .then(data => {
+            //       showSuccessModal(data);
+            //   })
+            //   .catch(error => {
+            //       console.error('Error:', error);
+            //   });
+            
+            // For demo purposes, we'll just show a success message
+            const room = rooms.find(r => r.id === parseInt(bookingData.roomId));
+            const checkinDate = new Date(bookingData.checkin).toLocaleDateString();
+            const checkoutDate = new Date(bookingData.checkout).toLocaleDateString();
+            
+            successMessage.innerHTML = `
+                Your reservation for the <strong>${room.title}</strong> has been confirmed.<br><br>
+                <strong>Check-in:</strong> ${checkinDate}<br>
+                <strong>Check-out:</strong> ${checkoutDate}<br>
+                <strong>Guests:</strong> ${bookingData.adults} Adults, ${bookingData.children} Children
+            `;
+            
+            closeModal(); // Close the room modal
+            successModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Testimonial slider
+        function showSlide(n) {
+            testimonialSlides.forEach(slide => slide.classList.remove('active'));
+            sliderDots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + testimonialSlides.length) % testimonialSlides.length;
+            testimonialSlides[currentSlide].classList.add('active');
+            sliderDots[currentSlide].classList.add('active');
+        }
+
+        sliderDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Auto-advance testimonials
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Set minimum dates for booking forms
+        function setMinDates() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            const formatDate = (date) => {
+                return date.toISOString().split('T')[0];
+            };
+            
+            document.getElementById('checkin').min = formatDate(today);
+            document.getElementById('checkout').min = formatDate(tomorrow);
+            document.getElementById('modalCheckin').min = formatDate(today);
+            document.getElementById('modalCheckout').min = formatDate(tomorrow);
+        }
+
+        // Initialize the page
+        function init() {
+            loadRooms();
+            setMinDates();
+        }
+
+        // Run when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
